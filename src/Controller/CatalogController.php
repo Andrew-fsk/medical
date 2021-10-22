@@ -12,7 +12,15 @@ class CatalogController extends AbstractController
     public function index(): Response
     {
         return $this->render('catalog/index.html.twig', [
-            'controller_name' => 'CatalogController',
+            'controller_action_title' => 'Главная'
+        ]);
+    }
+
+    #[Route('/create/substance/', name: 'create_substance')]
+    public function create_substance(): Response
+    {
+        return $this->render('catalog/create_substance.html.twig', [
+            'controller_action_title' => 'Создание действующего вещества'
         ]);
     }
 }
