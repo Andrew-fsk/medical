@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2>{{ form_action_title }}</h2>
+        {{ form_start(form) }}
+        {{ form_label(form.title, 'Название', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.title, { 'attr': {'class': 'form-control mb-2'},  }) }}
+        {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary btn-lg btn-block'} }) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
