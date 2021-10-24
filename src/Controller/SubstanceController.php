@@ -18,20 +18,20 @@ class SubstanceController extends AbstractController
     public function index(Request $request, ActiveSubstanceRepository $ActiveSubstanceRepository): Response
     {
         $data = $ActiveSubstanceRepository->findAll();
-        $activeSubstance = new ActiveSubstance();
+        $substance = new ActiveSubstance();
 
-        $form = $this->createFormBuilder($activeSubstance)
-            ->add('title', TextType::class, ['label' => 'Название',])
+        $form = $this->createFormBuilder($substance)
+            ->add('title', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Добавить'])
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $activeSubstance = $form->getData();
+            $substance = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($activeSubstance);
+            $entityManager->persist($substance);
             $entityManager->flush();
 
             return $this->redirectToRoute('substance');
@@ -50,14 +50,14 @@ class SubstanceController extends AbstractController
     {
         $repository = $this->getDoctrine()->getRepository(ActiveSubstance::class);
 
-        $activeSubstance = $repository->find($id);
+        $substance = $repository->find($id);
 
-        if (!$activeSubstance) {
+        if (!$substance) {
             throw $this->notFoundException();
         }
 
-        $form = $this->createFormBuilder($activeSubstance)
-            ->add('title', TextType::class, ['label' => 'Название',])
+        $form = $this->createFormBuilder($substance)
+            ->add('title', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Сохранить'])
             ->getForm();
 
@@ -75,7 +75,7 @@ class SubstanceController extends AbstractController
             'controller_action_title' => 'Редактировать вещество',
             'form_action_title' => 'Редактировать вещество',
             'id' => $id,
-            'data' => $activeSubstance,
+            'data' => $substance,
             'form' => $form
         ]);
     }

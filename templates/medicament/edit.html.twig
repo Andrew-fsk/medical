@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2>{{ form_action_title }}</h2>
+        {{ form_start(form) }}
+        {{ form_label(form.title, 'Название', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.title, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_label(form.id_active_substance, 'Дейсвующее вещество', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.id_active_substance, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_label(form.id_manufacturer, 'Производитель', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.id_manufacturer, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_label(form.price, 'Цена', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.price, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary btn-lg btn-block'} }) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

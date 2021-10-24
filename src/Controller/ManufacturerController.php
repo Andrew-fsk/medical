@@ -20,8 +20,8 @@ class ManufacturerController extends AbstractController
         $manufacturer = new Manufacturer();
 
         $form = $this->createFormBuilder($manufacturer)
-            ->add('title', TextType::class, ['label' => 'Название',])
-            ->add('site_url', TextType::class, ['label' => 'Ссылка на сайт',])
+            ->add('title', TextType::class)
+            ->add('site_url', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Добавить'])
             ->getForm();
 
@@ -57,8 +57,8 @@ class ManufacturerController extends AbstractController
         }
 
         $form = $this->createFormBuilder($manufacturer)
-            ->add('title', TextType::class, ['label' => 'Название',])
-            ->add('site_url', TextType::class, ['label' => 'Ссылка на сайт',])
+            ->add('title', TextType::class)
+            ->add('site_url', TextType::class)
             ->add('save', SubmitType::class, ['label' => 'Сохранить'])
             ->getForm();
 

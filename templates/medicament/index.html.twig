@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="my-3 pt-3 bg-white rounded box-shadow">
+            <h2 class="border-bottom border-gray pb-2 mb-0">{{ controller_action_title }}</h2>
+            {% if data %}
+                {% for item in data %}
+                    <div class="media text-muted pt-3">
+                        <h5 class="media-body d-flex justify-content-between pb-3 mb-0 lh-125 border-bottom border-gray">
+                            <span class="d-bloc">{{ loop.index }}. {{ item.title }} <br>
+                                    Вещество - {{ item.idActiveSubstance}} <br>
+                                    Производитель - {{ item.idManufacturer}} <br>
+                                    Цена - {{ item.price}} <br>
+                            </span>
+                            <span><a href="/medicament/edit/{{ item.id }}">edit</a> <a href="/medicament/delete/{{ item.id }}">delete</a></span>
+                        </h5>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="media text-muted pt-3">
+                    <h5 class="media-body pb-3 mb-0 lh-125 border-bottom border-gray">
+                        <span class="d-bloc text-gray-dark">Список пуст...</span>
+                    </h5>
+                </div>
+            {% endif %}
+        </div>
+        <h2>{{ form_action_title }}</h2>
+        {{ form_start(form) }}
+        {{ form_label(form.title, 'Название', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.title, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_label(form.id_active_substance, 'Дейсвующее вещество', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.id_active_substance, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_label(form.id_manufacturer, 'Производитель', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.id_manufacturer, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_label(form.price, 'Цена', {'label_attr': {'class': 'mb-2'}}) }}
+        {{ form_widget(form.price, { 'attr': {'class': 'form-control mb-2'} }) }}
+        {{ form_widget(form.save, { 'attr': {'class': 'btn btn-primary btn-lg btn-block'} }) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
